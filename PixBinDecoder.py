@@ -132,7 +132,7 @@ class PixBinDecoder:
         self._verifyChecksum = b;
 
 
-    def fetchBlock( n , forceDecoding=False ):
+    def fetchBlock(self, n , forceDecoding=False ):
         nbBlocks = self.getNumberOfBlocks()
         
         if( n<0 or n >= nbBlocks ):
@@ -149,7 +149,7 @@ class PixBinDecoder:
         
         blockInfo = self._binMeta["pixblocksInfo"][n];
         #pixBlockBuff = self._input.slice(offset, offset + blockInfo.byteLength);
-        pixBlockBuff = self._input[ offset : offset + blockInfo.byteLength ]
+        pixBlockBuff = self._input[ offset : offset + blockInfo["byteLength"] ]
         
         # MD5 checksum
         # if( self._verifyChecksum && md5( pixBlockBuff ) !== blockInfo.checksum){

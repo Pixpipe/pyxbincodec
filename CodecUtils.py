@@ -8,14 +8,20 @@ def buffToAsciiString( buff, byteOffset, byteLength ):
     return asciiStr
 
 
-def buffToUnicodeString( buff, byteOffset, byteLength ):
+def buffToUnicodeString( buff, byteOffset=0, byteLength=-1 ):
+    if( byteLength == -1 ):
+        byteLength = len(buff)
+        
     unicodeStr = None
     if( len(buff) >= (byteOffset + byteLength) ):
         unicodeStr = buff[byteOffset:(byteOffset + byteLength)].decode('utf-8')
     return unicodeStr
 
 
-def buffToDict( buff, byteOffset, byteLength, useUnicode = True ):
+def buffToDict( buff, byteOffset=0, byteLength=-1, useUnicode = True ):
+    if( byteLength == -1 ):
+        byteLength = len(buff)
+        
     jsonStr = None
     if( useUnicode ):
         jsonStr = buffToUnicodeString( buff, byteOffset, byteLength )
