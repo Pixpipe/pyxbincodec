@@ -1,6 +1,7 @@
 import zlib
 import numpy as np
-import CodecUtils
+#import CodecUtils
+from pyxbincodec import CodecUtils
 
 class PixBlockDecoder:
 

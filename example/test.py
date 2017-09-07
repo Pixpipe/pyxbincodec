@@ -1,9 +1,9 @@
-import PixBinDecoder
+import pyxbincodec
 
 def readPixbin( filePath ):
     with open(filePath, mode='rb') as file: # b is important -> binary
         buff = file.read()
-        pixBinDecoder = PixBinDecoder.PixBinDecoder()
+        pixBinDecoder = pyxbincodec.PixBinDecoder()
         pixBinDecoder.setInput( buff )
         
         # optional, perform a md5 verification when calling fetchBlock()
@@ -52,10 +52,10 @@ def readPixbin( filePath ):
         
         
 if __name__ == "__main__":
-    #filePath = "data/testFile_uncomp.pixb"
-    #filePath = "data/testFile_comp.pixb"
-    #filePath = "data/testFile_50k25_uncomp.pixb"
-    filePath = "data/testFile_50k25_comp.pixb"
+    #filePath = "../data/testFile_uncomp.pixb"
+    #filePath = "../data/testFile_comp.pixb"
+    #filePath = "../data/testFile_50k25_uncomp.pixb"
+    filePath = "../data/testFile_50k25_comp.pixb"
     
     readPixbin( filePath )
     

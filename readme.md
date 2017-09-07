@@ -20,7 +20,20 @@ Each `_data` object can be:
 
 And the `_metadata` object is a Python *dictionary*.
 
+# Install
+[not yet on pip]  
+Still, you can install a local copy as a link in your `site-packages` (dev mode).
+
+```bash
+$ git clone https://github.com/Pixpipe/pyxbincodec.git
+$ cd pyxbincodec
+# install a dev link
+$ pip3 install -e .
+```
+
 # How to use
+The following is sort of a step-by-step tut, but you can find it all in this [example](example/test.py).
+
 ## Reading a PixBin file
 To decode a PixBin file in Python, this file must be read as a binary stream:
 ```python
@@ -37,15 +50,15 @@ We decided to let the user deal with the file opening for two reasons:
 2. Because the binary buffer may come from a diferent source (http request, internal buffer that was never written on disc, etc.)
 
 ## Decoding
-First, we need to import PyxBinCodec:
+First, we need to import the module `pyxbincodec`:
 ```python
-import PixBinDecoder
+import pyxbincodec
 ```
 
 Once the `buff` is ready, it can be decoded:
 ```python
 # create a decoder instance
-pixBinDecoder = PixBinDecoder.PixBinDecoder()
+pixBinDecoder = pyxbincodec.PixBinDecoder()
 
 # optional: enable block checksum control
 pixBinDecoder.enableBlockVerification( True )
@@ -120,3 +133,6 @@ If the block comes from Pixpipe, the `originalBlockType` will probably be one of
 - `LineString`
 
 Still, it is possible that it is simple `Object`.
+
+# License
+MIT

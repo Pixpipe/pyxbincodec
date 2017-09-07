@@ -1,6 +1,7 @@
 import hashlib
-import CodecUtils
-import PixBlockDecoder
+
+from pyxbincodec import CodecUtils
+from pyxbincodec import PixBlockDecoder
 
 class PixBinDecoder:
     
@@ -164,7 +165,7 @@ class PixBinDecoder:
                 print("The block #" + n + " is corrupted.");
                 return None;
 
-        blockDecoder = PixBlockDecoder.PixBlockDecoder();
+        blockDecoder = PixBlockDecoder();
         blockDecoder.setInput( pixBlockBuff )
         blockDecoder.run();
         decodedBlock = blockDecoder.getOutput();
