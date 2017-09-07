@@ -1,3 +1,4 @@
+import hashlib
 import CodecUtils
 import PixBlockDecoder
 
@@ -132,6 +133,10 @@ class PixBinDecoder:
         self._verifyChecksum = b;
 
 
+    def getBinUserObject(self):
+        return self._binMeta["userObject"];
+
+
     def fetchBlock(self, n , forceDecoding=False ):
         nbBlocks = self.getNumberOfBlocks()
         
@@ -151,11 +156,13 @@ class PixBinDecoder:
         #pixBlockBuff = self._input.slice(offset, offset + blockInfo.byteLength);
         pixBlockBuff = self._input[ offset : offset + blockInfo["byteLength"] ]
         
-        # MD5 checksum
-        # if( self._verifyChecksum && md5( pixBlockBuff ) !== blockInfo.checksum){
-        #   print("The block #" + n + " is corrupted.");
-        #   return none;
-        # }
+        if( self._verifyChecksum):
+            md5Comp = hashlib.md5()
+            md5Comp.update(pixBlockBuff)
+            checksum = md5Comp.hexdigest()
+            if( checksum != blockInfo["checksum"] ):
+                print("The block #" + n + " is corrupted.");
+                return None;
 
         blockDecoder = PixBlockDecoder.PixBlockDecoder();
         blockDecoder.setInput( pixBlockBuff )

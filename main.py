@@ -5,6 +5,9 @@ def readPixbin( filePath ):
         buff = file.read()
         pixBinDecoder = PixBinDecoder.PixBinDecoder()
         pixBinDecoder.setInput( buff )
+        
+        # optional, perform a md5 verification when calling fetchBlock()
+        pixBinDecoder.enableBlockVerification( True )
 
         if( not pixBinDecoder.isValid() ):
             print("The file is not valid")
@@ -21,11 +24,12 @@ def readPixbin( filePath ):
         print("\nBin description:")
         print(pixBinDecoder.getBinDescription())
         
-        
+        print("\nUser object:")
+        print(pixBinDecoder.getBinUserObject())
         
         for i in range(0, nbBlocks):
         #for i in range(3, 4):
-            print("-------------------- BLOCK " + str(i) + " ----------")
+            print("\n-------------------- BLOCK " + str(i) + " ----------")
             
             print("\nDescription of block #" + str(i))
             print(pixBinDecoder.getBlockDescription(i))
@@ -33,7 +37,12 @@ def readPixbin( filePath ):
             print("\nType of block #" + str(i))
             print(pixBinDecoder.getBlockType(i))
             
-            block = pixBinDecoder.fetchBlock(i)
+            block = pixBinDecoder.fetchBlock(i, )
+            
+            if( block is None ):
+                print("Invalid block")
+                continue
+            
             print("\nBlock type (from block info):")
             print(block["originalBlockType"])
             print("\nBlock metadata:")
