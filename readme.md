@@ -21,9 +21,12 @@ Each `_data` object can be:
 And the `_metadata` object is a Python *dictionary*.
 
 # Install
-[not yet on pip]  
-Still, you can install a local copy as a link in your `site-packages` (dev mode).
+[not on pip yet]  
+```bash
+$ pip install git+https://github.com/Pixpipe/pyxbincodec
+```
 
+Or, you can install it in dev mode:  
 ```bash
 $ git clone https://github.com/Pixpipe/pyxbincodec.git
 $ cd pyxbincodec
